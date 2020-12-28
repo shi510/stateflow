@@ -1,5 +1,6 @@
 # stateflow
 modern C++ state management framework by transition condition.  
+This is header-only framework.  
 
 ## Example
 Define your state.  

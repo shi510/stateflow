@@ -22,13 +22,11 @@ TEST_CASE("state mahcine 1", "[sequence flow]")
     auto task2 = [&task_names]() -> auto
     {
         task_names += "2";
-        //do end process.
         return my_state1::C;
     };
     auto task3 = [&task_names]() -> auto
     {
         task_names += "3";
-        //do end process.
         return my_state1::END;
     };
 

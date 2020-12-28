@@ -9,6 +9,6 @@ option(SF_BUILD_TEST "Build unit test (require Catch2)" ON)
 set(sf_include_dirs ${PROJECT_SOURCE_DIR})
 
 if(SF_BUILD_TEST)
-	add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/Catch2)
-	add_subdirectory(unit_test)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/Catch2)
+    add_subdirectory(unit_test)
 endif()
