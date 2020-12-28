@@ -1,0 +1,7 @@
+set(the_app unit_test)
+file(GLOB test_srcs "*.cc")
+file(GLOB test_hdrs "*.hpp")
+add_executable(${the_app} ${test_srcs} ${test_hdrs})
+include_directories(${sf_include_dirs})
+target_link_libraries(${the_app} Catch2::Catch2)
+set_target_properties(${the_app} PROPERTIES FOLDER "unit_test")
