@@ -18,9 +18,8 @@ It transits to `my_state::B` When `your_data` is above 10, otherwise to `my_stat
 The `task2` has no conditions and it transits to `my_state::C`.  
 The `task3` has no conditions and it transits to `my_state::END`.  
 ```c++
-auto task1 = []() -> my_state
+auto task1 = [](int your_data=11) -> my_state
 {
-    int your_data = 11;
     std::cout<<"task1"<<std::endl;
     if(your_data > 10)
         return my_state1::B;
@@ -55,10 +54,20 @@ Then, run your state machine from `my_state::A`.
 ```c++
 sf.run<my_state::A>();
 ```
-
-The result above example should be as below.  
+The result is as below.  
 ```
 task1
 task2
+task3
+```
+
+Or you can feed arguments to your task.
+```c++
+sf.add_task<my_state::A>(task1, 1);
+sf.run<my_state::A>();
+```
+The result is as below.  
+```
+task1
 task3
 ```
