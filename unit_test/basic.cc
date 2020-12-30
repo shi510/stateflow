@@ -1,6 +1,7 @@
 #include <catch2/catch.hpp>
 #include <stateflow/stateflow.hpp>
 #include <string>
+#include <iostream>
 
 enum class my_state1 : int{
     A, B, C, END
@@ -10,9 +11,8 @@ TEST_CASE("state mahcine 1", "[sequence flow]")
 {
     using myflow1 = stateflow<my_state1>;
     std::string task_names;
-    auto task1 = [&task_names]()-> auto
+    auto task1 = [&task_names](int your_data = 11)-> auto
     {
-        int your_data = 11;
         task_names += "1";
         if(your_data > 10)
             return my_state1::B;
@@ -42,5 +42,10 @@ TEST_CASE("state mahcine 1", "[sequence flow]")
 
         sf.run<my_state1::A>();
         REQUIRE( task_names == "123" );
+
+        sf.add_task<my_state1::A>(task1, 1);
+        task_names = "";
+        sf.run<my_state1::A>();
+        REQUIRE( task_names == "13" );
     }
 }
